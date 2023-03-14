@@ -1,0 +1,38 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - 'main'
+  # pull_request:
+
+jobs:
+  build:
+
+    runs-on: "ubuntu-20.04"
+
+    steps:
+
+    - uses: actions/checkout@v2
+
+      with:
+        NAME: ${{ secrets.HOST_NAME }}
+        ORIGIN: ${{ secrets.HOST }}
+        USER: ${{ secrets.USER }}
+        SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    - run: sh script.sh 
+
+    # - name: set ssh private key - 1
+    #   run: echo ${{ secrets.SSH_PRIVATE_KEY }} > /root/.ssh/id_rsa
+
+    # - name: set ssh private key - 2
+    #   run: chmod 400 /root/.ssh/id_rsa
+
+    # - name: set ssh private key - 3
+    #   run: ssh-keygen -f /root/.ssh/id_rsa -p
+
+    # - name: run test
+    #   run: ssh-keyscan -H server >> /root/.ssh/known_hosts && ssh root@server -t  'bash -i -c "ls -al"'
+
+    # - name: run client
+    #   run: docker run --rm -it ubuntu-client bin/bash script.sh
