@@ -25,7 +25,7 @@ jobs:
     - run: |
         echo ${{ secrets.PROPS }} > .env  && \
         ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
-        scp -r . $HOST_NAME:/root/app && \
+        scp -r . ${{ secrets.HOST_NAME }}:/root/app && \
         ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
 
     # - name: set ssh private key - 1
