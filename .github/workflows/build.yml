@@ -15,10 +15,12 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
         NAME: ${{ secrets.HOST_NAME }}
         ORIGIN: ${{ secrets.HOST }}
         USER: ${{ secrets.USER }}
+        PORT: ${{ secrets.HOST_PORT }}
         SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
     - run: sh script.sh 
 
