@@ -22,7 +22,11 @@ jobs:
         USER: ${{ secrets.USER }}
         PORT: ${{ secrets.HOST_PORT }}
         SSHKEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    - run: sh script.sh 
+    - run: |
+      echo ${{ secrets.PROPS }} > .env  && \
+      ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
+      scp -r . $HOST_NAME:/root/app && \
+      ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
 
     # - name: set ssh private key - 1
     #   run: echo ${{ secrets.SSH_PRIVATE_KEY }} > /root/.ssh/id_rsa
