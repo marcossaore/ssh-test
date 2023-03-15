@@ -29,6 +29,8 @@ jobs:
 
     - uses: appleboy/ssh-action@v0.1.8
       with:
+        debug : true
+        timeout : '60s'
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
