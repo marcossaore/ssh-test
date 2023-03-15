@@ -28,23 +28,18 @@ jobs:
         source: "."
         target: "app"
 
-    - name: execute build
-      run: |
-        echo ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa
-        chmod 600 id_rsa
-        ssh-keyscan -H ${{ secrets.HOST }} -p ${{ secrets.HOST_PORT || 22 }} >> /root/.ssh/known_hosts
-        ssh -t ${{ secrets.USER }}@${{ secrets.HOST }} -t 'bash -i -c "cd app && npm i && npm start"'
+    - uses: actions/checkout@v2
 
-    # - name: build app in host
-    #   uses: appleboy/ssh-action@v0.1.8
-    #   with:
-    #     debug : true
-    #     timeout : '250s'
-    #     host: ${{ secrets.HOST }}
-    #     username: ${{ secrets.USER }}
-    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-    #     port: ${{ secrets.HOST_PORT || 22 }}
-    #     script: ls -alh #/bin/bash -c -i 'cd app && npm i && npm start'
+    - name: build app in host
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        debug : true
+        timeout : '250s'
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.HOST_PORT || 22 }}
+        script: ls -alh #/bin/bash -c -i 'cd app && npm i && npm start'
 
         # echo ${{ secrets.PROPS }} > .env  && \
         # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
