@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 restart server.js --update-env || pm2 start server.js"
+    "start": "pm2 restart index.js --update-env || pm2 start index.js"
   },
   "keywords": [],
   "author": "",
