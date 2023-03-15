@@ -27,14 +27,18 @@ jobs:
         source: "."
         target: "app"
 
-    - uses: JimCronqvist/action-ssh@master
+    - uses: appleboy/ssh-action@v0.1.8
       with:
-        host: '${{ secrets.USER }}@${{ secrets.HOST }}:${{ secrets.HOST_PORT || 22 }}' 
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          cd app
-          npm i
-          npm start
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.HOST_PORT || 22 }}
+        script: /bin/bash -c -i 'cd app && npm i && npm start'
+
+        # echo ${{ secrets.PROPS }} > .env  && \
+        # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
+        # scp -r . ${{ secrets.HOST_NAME }}:/root/app && \
+        # ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
 
     # - name: ls in ssh
     #   run: echo $SSH_PRIVATE_KEY > id_rsa && chmod 400 id_rsa
