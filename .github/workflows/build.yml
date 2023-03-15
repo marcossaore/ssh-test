@@ -29,11 +29,10 @@ jobs:
         # ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
 
     - name: ls in ssh
-      run:  echo $TEST2
-      # run: echo ${{ secrets.SSH_PRIVATE_KEY }} > id_rsa && chmod 400 id_rsa
+      run: echo $SSH_PRIVATE_KEY > id_rsa && chmod 400 id_rsa
         
-    # - name: access to host
-    #   run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.HOST_PORT }} -i id_rsa ls -al
+    - name: access to host
+      run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.HOST_PORT }} -i id_rsa ls -al
 
     # - name: set ssh private key - 1
     #   run: echo ${{ secrets.SSH_PRIVATE_KEY }} > /root/.ssh/id_rsa
