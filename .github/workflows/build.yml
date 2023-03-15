@@ -11,10 +11,9 @@ jobs:
 
     runs-on: "ubuntu-20.04"
 
-    steps:
-
     - uses: actions/checkout@v2
 
+    steps:
     - name: setup env
       run: echo ${{ secrets.PROPS }} > .env
 
