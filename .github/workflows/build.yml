@@ -39,7 +39,7 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.HOST_PORT || 22 }}
-        script: ls -alh #/bin/bash -c -i 'cd app && npm i && npm start'
+        script: /bin/bash -c -i 'cd app && npm i && npm start'
 
         # echo ${{ secrets.PROPS }} > .env  && \
         # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
