@@ -31,12 +31,10 @@ jobs:
       with:
         host: '${{ secrets.USER }}@${{ secrets.HOST }}:${{ secrets.HOST_PORT || 22 }}' 
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: /bin/bash -c -i 'cd app && npm i && npm start'
-
-        # echo ${{ secrets.PROPS }} > .env  && \
-        # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
-        # scp -r . ${{ secrets.HOST_NAME }}:/root/app && \
-        # ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
+        command: |
+          cd app
+          npm i
+          npm start
 
     # - name: ls in ssh
     #   run: echo $SSH_PRIVATE_KEY > id_rsa && chmod 400 id_rsa
