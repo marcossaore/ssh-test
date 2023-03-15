@@ -20,7 +20,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.HOST_PORT }}
+        port: ${{ secrets.HOST_PORT || 22 }}
         script: whoami
 
         # echo ${{ secrets.PROPS }} > .env  && \
