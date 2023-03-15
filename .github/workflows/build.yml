@@ -19,25 +19,25 @@ jobs:
       run: echo ${{ secrets.PROPS }} > .env
 
     - name: copy files to host
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.HOST_PORT || 22 }}
-          source: "."
-          target: "app"
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.HOST_PORT || 22 }}
+        source: "."
+        target: "app"
 
     - name: build app in host
       uses: appleboy/ssh-action@v0.1.8
-        with:
-          debug : true
-          timeout : '60s'
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.HOST_PORT || 22 }}
-          script: /bin/bash -c -i 'cd app && npm i && npm start'
+      with:
+        debug : true
+        timeout : '60s'
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.HOST_PORT || 22 }}
+        script: /bin/bash -c -i 'cd app && npm i && npm start'
 
         # echo ${{ secrets.PROPS }} > .env  && \
         # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
