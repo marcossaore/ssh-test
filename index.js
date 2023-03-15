@@ -7,7 +7,8 @@ const port = process.env.PORT || 3000
 app.get('/', (req, res) => {
     res.status(200).json({
         health: true,
-        version: process.env.VERSION
+        message: 'Hello World!',
+        version: process.env.VERSION || '1.0.0'
     })
 })
 
