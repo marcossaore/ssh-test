@@ -40,32 +40,3 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.HOST_PORT || 22 }}
         script: /bin/bash -c -i 'cd app && npm i && npm start'
-
-        # echo ${{ secrets.PROPS }} > .env  && \
-        # ssh ${{ secrets.HOST_NAME }} mkdir -p app && \
-        # scp -r . ${{ secrets.HOST_NAME }}:/root/app && \
-        # ssh ${{ secrets.HOST_NAME }} 'cd app && npm i && npm start'
-
-    # - name: ls in ssh
-    #   run: echo $SSH_PRIVATE_KEY > id_rsa && chmod 400 id_rsa
-
-    # - name: cat id_rsa
-    #   run: cat id_rsa
-        
-    # - name: access to host
-    #   run: ssh -i id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.HOST_PORT }} ls -al
-
-    # - name: set ssh private key - 1
-    #   run: echo ${{ secrets.SSH_PRIVATE_KEY }} > /root/.ssh/id_rsa
-
-    # - name: set ssh private key - 2
-    #   run: chmod 400 /root/.ssh/id_rsa
-
-    # - name: set ssh private key - 3
-    #   run: ssh-keygen -f /root/.ssh/id_rsa -p
-
-    # - name: run test
-    #   run: ssh-keyscan -H server >> /root/.ssh/known_hosts && ssh root@server -t  'bash -i -c "ls -al"'
-
-    # - name: run client
-    #   run: docker run --rm -it ubuntu-client bin/bash script.sh
